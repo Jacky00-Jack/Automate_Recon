@@ -16,14 +16,34 @@ engine="python"))
 print(df.query('Value > 500'))
 
 # Combine two traits into a new df to work with
-print(df.query('Type.str.contains("L DR")'))
-
-print(df.query('Type.str.contains("S CR")'))
 
 df1 = df.query('Type.str.contains("S CR")')
 df2 = df.query('Type.str.contains("L DR")')
 df_c = pd.concat([df1,df2])
-print(df_c)
+
+print(df, '\n', '\n', df1,'\n', '\n', df2, '\n', '\n', df_c)
+# Take item from coordinate
+# Pass another line to alter it
+y = []
+x = 0
+
+while x < df_c['Value'].count():
+    df_c.iat[x, 3] = -df_c.iat[x, 3]
+    y.append(df_c.iat[x, 3])
+    x += 1
+print(y)
+
+# Take item from coordinate
+# Pass another line to alter it
+df2.iat[1, 4] = -df2.iat[1, 4]
+print(df2.iat[1, 4])
+
+df['Amount'] = df['Amount'].str.replace(',', '')
+df['Amount'] = df['Amount'].astype(float)
+
+# String cant convert to float when there are special characters
+# Filter the Type and then apply function on the Corresponding Value
+df['Amount'] = np.where(df['Item Type'].str.contains('S CR'),-1*df['Amount'], np.where(df['Item Type'].str.contains('L DR'),-1*df['Amount'],df['Amount']))
 
 exit()
 # Use x[0~100] to access item inside of a tuple
