@@ -4,7 +4,7 @@ import numpy as np
 # find a way to connect it to Excel sheets
 # Use panda to import Excel, but how to make it dynamic (User friendly)
 # Use the zip function to tie the item ID to the formula used
-df = pd.read_csv(r"C:\Users\ADCCYW9\Downloads\Real Test 1.csv")
+df = pd.read_excel(r"C:\Users\ADCCYW9\Downloads\Real Test 2.xlsx")
 # Use this expression to remove ','
 df['Amount'] = df['Amount'].str.replace(',', '')
 df['Amount'] = df['Amount'].astype(float)
@@ -32,28 +32,6 @@ for i in range(10):
     for j in range(combination[0].count()):
         z = df[df['Amount'] == combination.iat[j, 0]]
         for item_id in z['Item ID']:
-            print(z['Amount', 'Item ID'])
+            print(z[['Amount', 'Item ID']])
     print('Outstanding: ', combo_sums_sorted[i])
     print('\n')
-exit()
-for i in range(10):
-    combination = combos_sorted[i]
-    for j in range(len(combination)):
-        z = df[df['Amount'] == combination[j]]
-    print(z)
-    print('Outstanding: ', combo_sums_sorted[i])
-    print('\n')
-exit()
-
-
-combination['Item ID'] = df['Item ID'].str.contains(combination.iat[j, 0])
-print('Outstanding: ', combo_sums_sorted[i], '\n', 'Combos: ', '\n', combination, '\n')
-exit()
-# Same value date
-# CSV, PANDA
-# Feed data into this from TLM
-# Know python's potential
-# Understand TLM completely
-# Write off
-combination['Item ID'] = item[combos_sorted[i]]
-print((df['Item ID']).to_string(index = False))
